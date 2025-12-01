@@ -4,7 +4,7 @@ use std::io::{BufRead, BufReader};
 
 
 
-pub fn get_pass_0() -> i32 {
+pub fn total_amount_of_zero_occured() -> i32 {
     let file = File::open("data/input.txt").expect("Unable to open file");
     let reader = BufReader::new(file);
 
@@ -129,63 +129,65 @@ pub fn get_pass_0() -> i32 {
 
 // }
 
-// pub fn get_zero_end(){
-//     let file = File::open("input.txt").expect("Unable to open file");
-//     let reader: BufReader<File> = BufReader::new(file);
-//     let mut count_zero = 0;
-//     let mut start_point;
-//     let mut result_cal;
+pub fn total_count_of_zero()->i32{
+    let file = File::open("input.txt").expect("Unable to open file");
+    let reader: BufReader<File> = BufReader::new(file);
+    let mut count_zero = 0;
+    let mut start_point;
+    let mut result_cal;
 
-//     start_point = 50;
-//     for (line_number, line_result) in reader.lines().enumerate() {
-//         let line = line_result.unwrap();
+    start_point = 50;
+    for (line_number, line_result) in reader.lines().enumerate() {
+        let line = line_result.unwrap();
 
-//         if line.is_empty() {
-//             continue;
-//         }
+        if line.is_empty() {
+            continue;
+        }
 
-//         let first_char = line.chars().next().unwrap();
-//         let rest_of_line = line.get(1..).unwrap().parse::<i32>().unwrap();
+        let first_char = line.chars().next().unwrap();
+        let rest_of_line = line.get(1..).unwrap().parse::<i32>().unwrap();
 
-//         match first_char {
-//             'R' => {
-//                 result_cal = start_point + rest_of_line;
-//                 // start_point = result_cal; 
+        match first_char {
+            'R' => {
+                result_cal = start_point + rest_of_line;
+                // start_point = result_cal; 
 
-//                 while result_cal<0 {
-//                     result_cal += 100;
-//                 }
-//                 while result_cal>99 {
-//                     result_cal -= 100;
-//                 }
+                while result_cal<0 {
+                    result_cal += 100;
+                }
+                while result_cal>99 {
+                    result_cal -= 100;
+                }
                 
-//                 start_point = result_cal;
-//                 if result_cal == 0 {
-//                     count_zero += 1;
-//                 }
+                start_point = result_cal;
+                if result_cal == 0 {
+                    count_zero += 1;
+                }
                 
-//             }
-//             'L' => {
-//                 result_cal = start_point - rest_of_line; // 0 -1
+            }
+            'L' => {
+                result_cal = start_point - rest_of_line; // 0 -1
 
-//                 while result_cal<0 {
-//                     result_cal += 100;
-//                 }
-//                 while result_cal>99 {
-//                     result_cal -= 100;
-//                 }
+                while result_cal<0 {
+                    result_cal += 100;
+                }
+                while result_cal>99 {
+                    result_cal -= 100;
+                }
                 
-//                 start_point = result_cal;
+                start_point = result_cal;
 
-//                 if result_cal == 0 {
-//                     count_zero += 1;
-//                 }
-//                 // start_point = result_cal;
-//             }
-//             _ => {
-//                 println!("Invalid direction at line {}", line_number + 1);
-//                 continue;
-//             }
-//         }
-//     }
-// }
+                if result_cal == 0 {
+                    count_zero += 1;
+                }
+                // start_point = result_cal;
+            }
+            _ => {
+                println!("Invalid direction at line {}", line_number + 1);
+                continue;
+            }
+        }
+    }
+
+    count_zero
+}
