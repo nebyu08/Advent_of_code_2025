@@ -27,12 +27,6 @@ pub fn p1(){
                     largest=current_pair;
                 }
             }
-            // let two_digits_str=&line[i..i+1];
-            // let current_pair=two_digits_str.parse::<i32>().unwrap();
-            
-            // if current_pair>largest{
-            //     largest=current_pair;
-            // }
         }
 
         largest_pars.push(largest);
