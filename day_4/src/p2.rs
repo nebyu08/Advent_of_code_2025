@@ -13,13 +13,13 @@ pub fn p2() {
         grid.push(row);
     }
 
-    loop{
-        let mut to_remove:Vec<(usize,usize)>=Vec::new();
+    loop {
+        let mut to_remove: Vec<(usize, usize)> = Vec::new();
         for i in 0..grid.len() {
             for j in 0..grid[i].len() {
                 if grid[i][j] == "@" {
                     if have_less_than_4_papers_fn(&grid, i, j) {
-                        to_remove.push((i,j));
+                        to_remove.push((i, j));
                         // grid[i][j] = "x".to_string();
                         // total_count += 1;
                     }
@@ -27,12 +27,12 @@ pub fn p2() {
             }
         }
         total_count += to_remove.len();
-        if to_remove.len()==0{
+        if to_remove.len() == 0 {
             break;
         }
 
-        for (x,y) in to_remove{
-            grid[x][y]="x".to_string();
+        for (x, y) in to_remove {
+            grid[x][y] = "x".to_string();
         }
     }
 
