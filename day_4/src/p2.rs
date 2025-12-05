@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-pub fn p1() {
+pub fn p2() {
     let file = File::open("data/input.txt").unwrap();
     let reader = BufReader::new(file);
     let mut grid: Vec<Vec<String>> = Vec::new();
@@ -13,22 +13,33 @@ pub fn p1() {
         grid.push(row);
     }
 
-    // loop through the grid and print each element with its coordinates
-    for (i, row) in grid.iter().enumerate() {
-        for (j, value) in row.iter().enumerate() {
-            // println!("grid[{}][{}] = {}", i, j, value);
-            if value == "@" {
-                if have_less_than_4_papers_fn(&grid, i, j) {
-                    total_count += 1;
+    loop{
+        let mut to_remove:Vec<(usize,usize)>=Vec::new();
+        for i in 0..grid.len() {
+            for j in 0..grid[i].len() {
+                if grid[i][j] == "@" {
+                    if have_less_than_4_papers_fn(&grid, i, j) {
+                        to_remove.push((i,j));
+                        // grid[i][j] = "x".to_string();
+                        // total_count += 1;
+                    }
                 }
             }
         }
+        total_count += to_remove.len();
+        if to_remove.len()==0{
+            break;
+        }
 
-        println!(
-            "Total count of positions with less than 4 papers around: {}",
-            total_count
-        );
+        for (x,y) in to_remove{
+            grid[x][y]="x".to_string();
+        }
     }
+
+    println!(
+        "Total count of positions with less than 4 papers around: {}",
+        total_count
+    );
 }
 
 fn have_less_than_4_papers_fn(grid: &Vec<Vec<String>>, x: usize, y: usize) -> bool {
