@@ -23,23 +23,23 @@ pub fn p2() {
 
     // Use HashSet to track which ranges contain each number
     // let mut acceptable_ranges = HashSet::new();
-    let mut good_rangess:Vec<(u128,u128)>=Vec::new();
+    // let mut good_rangess:Vec<(u128,u128)>=Vec::new();
 
-    for num in numbers_to_check {
-        for &(lower, upper) in &ranges_only {
-            if num >= lower && num <= upper {
-                // Instead of storing the entire range, just add the numbers we need
-                // acceptable_ranges.insert(num);
-                good_rangess.push((lower,upper));
-                break;
-            }
-        }
-    }
+    // for num in numbers_to_check {
+    //     for &(lower, upper) in &ranges_only {
+    //         if num >= lower && num <= upper {
+    //             // Instead of storing the entire range, just add the numbers we need
+    //             // acceptable_ranges.insert(num);
+    //             good_rangess.push((lower,upper));
+    //             break;
+    //         }
+    //     }
+    // }
 
     //count
     let mut temp_numbers:HashSet<u128>=HashSet::new();
 
-    for (lower,upper) in good_rangess{
+    for (lower,upper) in ranges_only{
         for i in lower..=upper{
             temp_numbers.insert(i);
         }
